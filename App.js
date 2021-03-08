@@ -25,6 +25,13 @@ export default class App extends React.Component {
   };
 
   render() {
+    if (this.state.item.length > 1) {
+      renderList = this.state.item.map((item) => {
+        return <Text key={item.id}>{item.data}</Text>;
+      });
+    } else {
+      renderList = <Text>no items</Text>;
+    }
     return (
       <View style={styles.container}>
         <Appbar.Header>
@@ -39,6 +46,7 @@ export default class App extends React.Component {
         <Button mode="contained" onPress={this.storedata}>
           Add ToDo
         </Button>
+        <View>{renderList}</View>
         <StatusBar style="auto" />
       </View>
     );
