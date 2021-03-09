@@ -24,6 +24,12 @@ export default class App extends React.Component {
     console.log(this.state);
   };
 
+  async componentDidMount(){
+    this.setState({
+      item: JSON.parse(await AsyncStorage.getItem("mylist")),
+    });
+  }
+
   render() {
     if (this.state.item.length > 0) {
       renderList = this.state.item.map((item) => {
