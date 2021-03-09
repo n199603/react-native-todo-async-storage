@@ -21,7 +21,7 @@ export default class App extends React.Component {
       item: JSON.parse(await AsyncStorage.getItem("mylist")),
     });
 
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   async componentDidMount(){
