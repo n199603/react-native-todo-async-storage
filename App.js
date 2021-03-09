@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
-import { Appbar, TextInput, Button } from "react-native-paper";
+import { Appbar, TextInput, Button, Card, List } from "react-native-paper";
 import { render } from "react-dom";
 
 export default class App extends React.Component {
@@ -25,9 +25,16 @@ export default class App extends React.Component {
   };
 
   render() {
-    if (this.state.item.length > 1) {
+    if (this.state.item.length > 0) {
       renderList = this.state.item.map((item) => {
-        return <Text key={item.id}>{item.data}</Text>;
+        return (
+          <Card key={item.id} style={{ marginBottom: 10 }}>
+            <List.Item
+              title={item.data}
+              right={() => <List.Icon icon="delete" />}
+            />
+          </Card>
+        );
       });
     } else {
       renderList = <Text>no items</Text>;
@@ -42,7 +49,6 @@ export default class App extends React.Component {
           value={this.state.text}
           onChangeText={(text) => this.setState({ text })}
         />
-        <Text style={{ fontSize: 20 }}>{this.state.item[0].data}</Text>
         <Button mode="contained" onPress={this.storedata}>
           Add ToDo
         </Button>
@@ -56,6 +62,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#d3d3d3",
   },
 });
